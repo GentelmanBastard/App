@@ -38,5 +38,13 @@
         <RadioButton text="SSH" toggleGroup="$connectionToggleGroup" selected="true"/>
         <RadioButton text="Telnet" toggleGroup="$connectionToggleGroup"/>
     </HBox>
-    <TextArea fx:id="log" GridPane.rowIndex="2" GridPane.columnIndex="0" prefWidth="400"/>
+    <HBox fx:id="commandBox" GridPane.rowIndex="2" GridPane.columnIndex="0" alignment="CENTER" spacing="10">
+        <fx:define>
+            <ToggleGroup fx:id="commandGroup"/>
+        </fx:define>
+        <RadioButton fx:id="startover" text="Startover" toggleGroup="$commandGroup" selected="true"/>
+        <RadioButton fx:id="processing" text="Processing" toggleGroup="$commandGroup"/>
+        <RadioButton fx:id="time" text="Time" toggleGroup="$commandGroup"/>
+    </HBox>
+    <TextArea fx:id="log" GridPane.rowIndex="3" GridPane.columnIndex="0" prefWidth="400" prefHeight="600"/>
 </GridPane>
