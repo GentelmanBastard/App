@@ -19,10 +19,10 @@
         <Insets left="10"/>
     </padding>
     <HBox GridPane.rowIndex="1" GridPane.columnIndex="0" alignment="CENTER" spacing="10">
-        <TextField text="User" prefWidth="90"/>
-        <TextField text="Password" prefWidth="90"/>
-        <TextField text="Box IP" prefWidth="90"/>
-        <Button text="Connect" prefWidth="90">
+        <TextField fx:id="username" text="User" prefWidth="90"/>
+        <TextField fx:id="pass" text="Password" prefWidth="90"/>
+        <TextField fx:id="boxIp" text="Box IP" prefWidth="90"/>
+        <Button text="Connect" prefWidth="90" onAction="#onButtonClicked">
             <graphic>
                 <ImageView>
                     <Image url="@/toolbarButtonGraphics/general/PageSetup24.gif"/>
