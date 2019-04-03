@@ -1,0 +1,40 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.RadioButton?>
+<GridPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
+          style="-fx-border-color: blue; -fx-border-width: 3; -fx-border-style: solid;
+        -fx-font-family: 'Times New Roman'; -fx-font-size: 12">
+    <Label GridPane.rowIndex="0" text="Connect to the box" alignment="CENTER" prefWidth="400"
+           style="-fx-border-color: green; -fx-border-style: dashed; -fx-font-family: 'Arial Black'; -fx-font-size: 32"/>
+    <padding>
+        <Insets left="10"/>
+    </padding>
+    <HBox GridPane.rowIndex="1" GridPane.columnIndex="0" alignment="CENTER" spacing="10">
+        <TextField text="User" prefWidth="90"/>
+        <TextField text="Password" prefWidth="90"/>
+        <TextField text="Box IP" prefWidth="90"/>
+        <Button text="Connect" prefWidth="90">
+            <graphic>
+                <ImageView>
+                    <Image url="@/toolbarButtonGraphics/general/PageSetup24.gif"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+    <HBox GridPane.rowIndex="1" GridPane.columnIndex="1" alignment="CENTER" spacing="10">
+        <fx:define>
+            <ToggleGroup fx:id="connectionToggleGroup"/>
+        </fx:define>
+        <RadioButton text="SSH" toggleGroup="$connectionToggleGroup" selected="true"/>
+        <RadioButton text="Telnet" toggleGroup="$connectionToggleGroup"/>
+    </HBox>
+</GridPane>
