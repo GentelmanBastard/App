@@ -36,6 +36,7 @@ public class Controller {
             System.out.println("Connected");
 
             Channel channel=session.openChannel("exec");
+            // Rzutowanie elementu channel and klasę ChannelExec i uruchamiamy metodę setCommand
             ((ChannelExec)channel).setCommand(command1);
             channel.setInputStream(null);
             ((ChannelExec)channel).setErrStream(System.err);
