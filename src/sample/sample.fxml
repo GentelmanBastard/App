@@ -20,9 +20,9 @@
         <Insets left="10"/>
     </padding>
     <HBox GridPane.rowIndex="1" GridPane.columnIndex="0" alignment="CENTER" spacing="10">
+        <TextField fx:id="boxIp" text="Box IP" prefWidth="90"/>
         <TextField fx:id="username" text="User" prefWidth="90"/>
         <TextField fx:id="pass" text="Password" prefWidth="90"/>
-        <TextField fx:id="boxIp" text="Box IP" prefWidth="90"/>
         <Button text="Connect" prefWidth="90" onAction="#onButtonClicked">
             <graphic>
                 <ImageView>
@@ -42,9 +42,10 @@
         <fx:define>
             <ToggleGroup fx:id="commandGroup"/>
         </fx:define>
-        <RadioButton fx:id="startover" text="Startover" toggleGroup="$commandGroup" selected="true"/>
+        <RadioButton fx:id="monitoring" text="Mxvision monitoring" toggleGroup="$commandGroup" selected="true"/>
+        <RadioButton fx:id="startover" text="Startover" toggleGroup="$commandGroup"/>
         <RadioButton fx:id="processing" text="Processing" toggleGroup="$commandGroup"/>
-        <RadioButton fx:id="time" text="Time" toggleGroup="$commandGroup"/>
+        <RadioButton fx:id="time" text="Date" toggleGroup="$commandGroup"/>
     </HBox>
     <TextArea fx:id="log" GridPane.rowIndex="3" GridPane.columnIndex="0" prefWidth="400" prefHeight="600"/>
 </GridPane>
