@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,33 +96,51 @@ public class Controller {
 //                channel.setInputStream(null);
 //                ((ChannelExec) channel).setErrStream(System.err);
                 ((ChannelExec) channel).setCommand(command);
+                channel.setInputStream(null);
                 InputStream in = channel.getInputStream();
                 InputStream err = channel.getExtInputStream();
+                OutputStream out = channel.getOutputStream();
                 channel.connect();
                 byte[] tmp = new byte[1024];
+                int i = in.read(tmp, 0, 1024);
                 while (true) {
-                    while (in.available() > 0) {
-                        int i = in.read(tmp, 0, 1024);
-                        if (i < 0) break;
-                        outputBuffer.append(new String(tmp, 0, i));
-                    }
-                    while (err.available() > 0) {
-                        int i = err.read(tmp, 0, 1024);
-                        if (i < 0) break;
-                        errorBuffer.append(new String(tmp, 0, i));
-                    }
-                    if (channel.isClosed()) {
-                        if ((in.available() > 0) || (err.available() > 0)) continue;
-                        System.out.println("exit-status: " + channel.getExitStatus());
-                        break;
-                    }
                     try {
                         Thread.sleep(1000);
-                    } catch (Exception ee) {
+
+//                        int i = in.read(tmp, 0, 1024);
+                        if (i < 0) break;
+                        outputBuffer.append(new String(tmp, 0, i));
+                        log.appendText("current message: " + outputBuffer.toString());
+                        System.out.println("current message: " + outputBuffer.toString());
+
+//                    while (err.available() > 0) {
+////                        int i = err.read(tmp, 0, 1024);
+//                        if (i < 0) break;
+//                        errorBuffer.append(new String(tmp, 0, i));
+//                    }
+//                    if (channel.isClosed()) {
+//
+//                        if ((in.available() > 0) || (err.available() > 0)) continue;
+//
+//                        System.out.println("exit-status: " + channel.getExitStatus());
+//                        break;
+//                    }
+                        if(in.available() > 0) {
+                            i = in.read(tmp, 0, 1024);
+                        }
+
+                        else{
+                            break;
+                        }
+                    }
+                     catch (Exception ee) {
+                        System.out.println(ee.getMessage());
                     }
                 }
-                System.out.println("output: " + outputBuffer.toString());
+//                System.out.println("output: " + outputBuffer.toString());
+                log.appendText(outputBuffer.toString());
                 log.appendText("DONE\n");
+                outputBuffer = new StringBuilder();
                 channel.disconnect();
             }
             session.disconnect();
